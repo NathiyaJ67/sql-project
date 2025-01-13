@@ -176,6 +176,17 @@ FROM
 LEFT JOIN Feedback  ON Customer.Customer_id = Feedback.Customer_id
 GROUP BY
     Customer.Customer_id, Customer.Name, Customer.Email;
+----------------------------------------------------------------------------------------------------------------------------------------
+
+DELIMITER $$
+   CREATE PROCEDURE GetCategoryRatings()
+   BEGIN
+       SELECT Category_id, AVG(Rating) AS AvgRating
+       FROM Feedback
+       GROUP BY Category_id;
+   END$$
+   DELIMITER ;
+   
 
 
 
